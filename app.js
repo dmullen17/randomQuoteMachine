@@ -21,26 +21,38 @@ class QuoteBox extends React.Component {
       isLoaded: false,
       quotes: [],
       quote: 'Ah music, a magic beyond all those we teach here',
-      author: 'Albus Dumbledore'
+      speaker: 'Albus Dumbledore'
     };
+    this.logState = this.logState.bind(this);
+    this.newQuote = this.newQuote.bind(this);
   }
   componentDidMount() {
     fetch(endpoint)
       .then(blob => blob.json())
       .then((data) => {
-      console.log(data["quotes"]);
+      //console.log(data["quotes"]);
       this.setState({
         isLoaded: true,
         quotes: data["quotes"]
       });
     });
+  }
+  logState() {
     console.log(this.state);
+  }
+  newQuote() {
+    const index = Math.floor(Math.random()*this.state.quotes.length);
+    this.setState({
+      quote: this.state.quotes[index].quote,
+      speaker: this.state.quotes[index].speaker
+    });
+    //console.log(this.state);
   }
   render() {
     return (
-      <div id='quote-box'>
+      <div id='quote-box' onClick={this.newQuote}>
         <Text quote={this.state.quote}/>
-        <Author author={this.state.author} />
+        <Speaker speaker={this.state.speaker} />
         <RowOfButtons />
       </div>
     );
@@ -72,8 +84,8 @@ const NewQuoteButton = () => {
 }
 
 // Define React stateless component using vanilla JS syntax 
-const Author = function(props) {
-  return (<div id='author'>- {props.author}</div>);
+const Speaker = function(props) {
+  return (<div id='author'>- {props.speaker}</div>);
 }
 
 
