@@ -1,5 +1,5 @@
 // This project is partly inspired by and includes quotes from this wonderful pen! https://codepen.io/SourApple/pen/BoXjpZ
-const endpoint = 'https://gist.githubusercontent.com/dmullen17/6bdadb84e894e5e695fb301613bb7bd1/raw/d533e230993bcac206f10afe661e61aaee7b9a9e/Harry%2520Potter%2520Quotes'; 
+const endpoint = 'https://gist.githubusercontent.com/dmullen17/6bdadb84e894e5e695fb301613bb7bd1/raw/4e84ee85b6eda9bc0ae253024a5b384dcb579292/Harry%2520Potter%2520Quotes'; 
 
 class App extends React.Component {
   constructor(props) {
@@ -36,9 +36,12 @@ class App extends React.Component {
         <div id='quote-box'>
           <div id='text'>{this.state.quote}</div>
           <div id='author'>- {this.state.speaker}</div>
-          <div>
+          <div id='buttons-row'>
+            <a href='https://github.com/dmullen17' target='_blank'>
+              <i className="fab fa-github-square tweet-button"></i>
+            </a>
             <a id='tweet-quote' href={tweetHref} target='_blank'>
-              <i class="fab fa-twitter-square"></i>
+              <i className="fab fa-twitter-square tweet-button"></i>
             </a>
             <button id='new-quote' onClick={this.newQuote}>New Quote</button>
           </div>
